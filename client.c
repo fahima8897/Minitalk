@@ -10,18 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk.h"
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
-
-int main()
+int	check_first_argument(char *pid)
 {
-  /*  if (argc != 3)
-        return (0);
-*/
-	int pid;
+	while(*pid)
+	{
+		if(*pid < '0' || *pid > '9')
+			return (1);
+		pid++;
+	}
+	return(0);
+}
 
-	pid = getpid();
-	printf("Mon PID est : %d", pid);
+void	send_signal(pid_t pid, char c)
+{
+	
+}
+int main(int ac, char **av)
+{
+	pid_t pid_server;
+	if (ac != 3)
+		ft_putstr("Attention please ! wrong number of arguments\n");
+	if(check_first_argument(av[1]) == 1)
+		ft_putstr("Your PID is not correct\n");
+	pid_server = atoi(av[1]);
+
+	
+
 }

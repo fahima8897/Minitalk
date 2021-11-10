@@ -10,24 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "minitalk.h"
 
-void	handle_sigusr1(int sig)
+void	get_my_pid(void)
 {
-	printf("alors comment ca va");
+	pid_t pid;
+
+	pid = getpid();
+	ft_putstr("Hello my PID is : ");
+	ft_putnbr(pid);
+	ft_putchar('\n');
 }
 
 int main()
 {
-	int pid;
-    struct sigaction sa;
-	sa.sa_handler = &handle_sigusr1;
-    sigaction(SIGUSR2, &sa, NULL);
-
-	pid = getpid();
-	printf("Mon PID est : %d", pid);
-	kill(pid,SIGUSR2);
-	
+	get_my_pid();
 }
