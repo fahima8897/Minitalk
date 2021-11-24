@@ -22,7 +22,32 @@ void	get_my_pid(void)
 	ft_putchar('\n');
 }
 
-int main()
+void	handler(int signum)
 {
+	char c;
+	int i;
+
+	c = 0;
+	i = 0;
+	if (signum == SIGUSR1)
+			c |= 1 << i;
+	i++;
+	if (i == 8)
+		ft_putchar(c);
+}
+
+int	main()
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = handler;
+	sa.sa_flags = 0;
 	get_my_pid();
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+	while (1)
+	{
+		pause();
+	}
+	return (0);
 }

@@ -23,4 +23,12 @@ char    ft_putstr(char *str);
 void    ft_putnbr(int n);
 int     ft_atoi(const char *str);
 
+        /* clients.c */
+int	check_first_argument(char *pid);
+void	send_signal(pid_t pid, char c);
+
+        /* server.c */
+void	get_my_pid(void);
+void	handler(int signum);
+
 #endif
