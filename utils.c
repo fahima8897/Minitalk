@@ -12,46 +12,46 @@
 
 #include "minitalk.h"
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-char    *ft_putstr(char *str)
+char	*ft_putstr(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(str[i] != '\0')
-    {
-        ft_putchar(str[i]);
-        i++;
-    }
-    return (str);
+	i = 0;
+	while(str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+	return (str);
 }
 
-void    ft_putnbr(int n)
+void	ft_putnbr(int n)
 {
-    long long c;
+	long long	c;
 
-    c = n;
-    if (c < 0)
-    {
-        c = -c;
-        ft_putchar('-');
-    }
-    if (c >= 0 && c < 9)
-        ft_putchar(c + 48);
-    if (c > 9)
-    {
-        ft_putnbr(c / 10);
-        ft_putnbr(c % 10);
-    }
+	c = n;
+	if (c < 0)
+	{
+		c = -c;
+		ft_putchar('-');
+	}
+	if (c >= 0 && c < 9)
+		ft_putchar(c + 48);
+	if (c > 9)
+	{
+		ft_putnbr(c / 10);
+		ft_putnbr(c % 10);
+	}
 }
 
-int ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
-    int	i;
+	int	i;
 	int	res;
 	int	sign;
 

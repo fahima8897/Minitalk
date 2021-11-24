@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fboumell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:08:39 by fboumell          #+#    #+#             */
-/*   Updated: 2021/10/05 11:08:42 by fboumell         ###   ########.fr       */
+/*   Updated: 2021/11/24 17:50:50 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	check_first_argument(char *pid)
+int		check_first_argument(char *pid)
 {
 	while(*pid)
 	{
@@ -25,7 +25,7 @@ int	check_first_argument(char *pid)
 
 void	send_signal(pid_t pid, char c)
 {
-	int i;
+	int	i;
 
 	i = 7;
 	while(i >= 0)
@@ -41,16 +41,16 @@ void	send_signal(pid_t pid, char c)
 
 int main(int ac, char **av)
 {
-	int i;
-	pid_t pid_server;
+	int		i;
+	pid_t	pid_server;
 
 	i = 0;
 	if (ac != 3)
 		ft_putstr("Attention please ! wrong number of arguments\n");
 	if(check_first_argument(av[1]) == 1)
 		ft_putstr("Your PID is not correct\n");
-	pid_server = atoi(av[1]);
-	while(av[2][i] != '/0')
+	pid_server = ft_atoi(av[1]);
+	while(av[2][i] != '\0')
 	{
 		send_signal(pid_server, av[2][i]);
 		i++;
