@@ -6,7 +6,7 @@
 /*   By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:08:50 by fboumell          #+#    #+#             */
-/*   Updated: 2021/11/25 15:27:17 by fboumell         ###   ########.fr       */
+/*   Updated: 2021/11/25 16:21:08 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 static int len;
 
-void	get_my_pid(void)
+void	get_my_pid(int ac)
 {
 	pid_t	pid;
-
-	pid = getpid();
-	ft_putstr("Hello my PID is : ");
-	ft_putnbr(pid);
-	ft_putchar('\n');
+	
+	if (ac > 1)
+		ft_putstr("Too many arguments!\n");
+	if (ac == 1)
+	{	
+		pid = getpid();
+		ft_putstr("Hello my PID is : ");
+		ft_putnbr(pid);
+		ft_putchar('\n');
+	}
 }
 
 void	convert_bits(char *s)
@@ -61,10 +66,12 @@ void	handler(int signum)
 	}
 }
 
-int	main()
+int	main(int ac, char **av)
 {
 	struct sigaction	sa;
 	
+	(void)av;
+	get_my_pid(ac);
 	len = 0;
 	sa.sa_handler = handler;
 	sa.sa_flags = 0;
