@@ -1,0 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/24 11:58:52 by fboumell          #+#    #+#              #
+#    Updated: 2021/11/24 13:43:29 by fboumell         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = all
+
+CC =gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+RM = rm -f
+
+$(NAME): client server
+
+client: client.c utils.c
+	${CC} ${CFLAGS} client.c utils.c -o client
+
+server: server.c utils.c
+	${CC} ${CFLAGS} server.c utils.c -o server
+
+cclean:
+	${RM} client
+
+sclean:
+	${RM} server
+
+clean: cclean sclean
+
+fclean: clean
+
+re : fclean all
