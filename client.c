@@ -6,7 +6,7 @@
 /*   By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:08:39 by fboumell          #+#    #+#             */
-/*   Updated: 2021/11/26 16:15:17 by fboumell         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:10:35 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ void	send_signal(pid_t pid, char c)
 {
 	int	i;
 
-	i = 7;
-	while (i >= 0)
+	i = 0;
+	while (i < 8)
 	{
-		if (c & (1 << i))
+		if (c & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		i--;
+		c = c >> 1;
+		i++;
 		usleep(200);
 	}
 }
