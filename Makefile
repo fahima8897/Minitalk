@@ -6,7 +6,7 @@
 #    By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 11:58:52 by fboumell          #+#    #+#              #
-#    Updated: 2021/11/24 13:43:29 by fboumell         ###   ########.fr        #
+#    Updated: 2021/11/26 14:40:21 by fboumell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,13 @@ SRCS	= server.c client.c utils.c
 
 OBJS		=	${SRCS:.c=.o}
 
-$(NAME_C):	${OBJS}
-
-$(NAME_S):	${OBJS}
-				
-%.o :		%.c 
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-
 all : 		${NAME_C} ${NAME_S}
+
+server :	server.c utils.c 
+			${CC} ${CFLAGS} server.c utils.c -o ${NAME_S}
+			
+client :	client.c utils.c 
+			${CC} ${CFLAGS} client.c utils.c -o ${NAME_C}
 
 clean : 
 			${RM} ${OBJS}

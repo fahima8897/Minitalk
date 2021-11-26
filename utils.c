@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 13:57:12 by marvin            #+#    #+#             */
-/*   Updated: 2021/11/04 13:57:12 by marvin           ###   ########.fr       */
+/*   Updated: 2021/11/26 16:25:24 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_putstr(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		ft_putchar(str[i]);
 		i++;
@@ -49,7 +49,7 @@ void	ft_putnbr(int n)
 	}
 }
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	res;
@@ -59,7 +59,7 @@ int		ft_atoi(const char *str)
 	res = 0;
 	sign = 1;
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\f'
-		   || str[i] == '\r' || str[i] == ' ')
+		|| str[i] == '\r' || str[i] == ' ')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -72,6 +72,5 @@ int		ft_atoi(const char *str)
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
-	return (res * sign);    
+	return (res * sign);
 }
-

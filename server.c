@@ -6,18 +6,16 @@
 /*   By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:08:50 by fboumell          #+#    #+#             */
-/*   Updated: 2021/11/25 16:21:08 by fboumell         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:23:30 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static int len;
-
 void	get_my_pid(int ac)
 {
 	pid_t	pid;
-	
+
 	if (ac > 1)
 		ft_putstr("Too many arguments!\n");
 	if (ac == 1)
@@ -29,10 +27,10 @@ void	get_my_pid(int ac)
 	}
 }
 
-void	convert_bits(char *s)
+void	convert_bits(int *s)
 {
 	char	c;
-	int	i;
+	int		i;
 
 	c = 0;
 	i = 7;
@@ -42,20 +40,17 @@ void	convert_bits(char *s)
 			c |= 1 << (7 - i);
 		i--;
 	}
-	free(s);
 	ft_putchar(c);
-	
 }
 
 void	handler(int signum)
 {
-	char *s;
-	
-	if (len == 0)
-		s = malloc(sizeof(char) * (8 + 1));
+	static int	s[8];
+	static int	len = 0;
+
 	if (signum == SIGUSR1)
 		s[len] = '1';
-	if (signum == SIGUSR2)
+	else if (signum == SIGUSR2)
 		s[len] = '0';
 	len++;
 	if (len == 8)
@@ -69,13 +64,11 @@ void	handler(int signum)
 int	main(int ac, char **av)
 {
 	struct sigaction	sa;
-	
+
 	(void)av;
-	get_my_pid(ac);
-	len = 0;
 	sa.sa_handler = handler;
 	sa.sa_flags = 0;
-	get_my_pid();
+	get_my_pid(ac);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)

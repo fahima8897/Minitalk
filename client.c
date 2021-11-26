@@ -6,21 +6,21 @@
 /*   By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:08:39 by fboumell          #+#    #+#             */
-/*   Updated: 2021/11/25 10:25:56 by fboumell         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:15:17 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int		check_first_argument(char *pid)
+int	check_first_argument(char *pid)
 {
-	while(*pid)
+	while (*pid)
 	{
-		if(*pid < '0' || *pid > '9')
+		if (*pid < '0' || *pid > '9')
 			return (1);
 		pid++;
 	}
-	return(0);
+	return (0);
 }
 
 void	send_signal(pid_t pid, char c)
@@ -28,7 +28,7 @@ void	send_signal(pid_t pid, char c)
 	int	i;
 
 	i = 7;
-	while(i >= 0)
+	while (i >= 0)
 	{
 		if (c & (1 << i))
 			kill(pid, SIGUSR1);
@@ -39,7 +39,7 @@ void	send_signal(pid_t pid, char c)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	int		i;
 	pid_t	pid_server;
@@ -47,13 +47,13 @@ int main(int ac, char **av)
 	i = 0;
 	if (ac != 3)
 		ft_putstr("Attention please ! wrong number of arguments\n");
-	if(check_first_argument(av[1]) == 1)
+	if (check_first_argument(av[1]) == 1)
 		ft_putstr("Your PID is not correct\n");
 	pid_server = ft_atoi(av[1]);
-	while(av[2][i] != '\0')
+	while (av[2][i] != '\0')
 	{
 		send_signal(pid_server, av[2][i]);
 		i++;
 	}
-	return(0);
+	return (0);
 }
