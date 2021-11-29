@@ -6,7 +6,7 @@
 /*   By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:23:46 by marvin            #+#    #+#             */
-/*   Updated: 2021/11/26 16:16:04 by fboumell         ###   ########.fr       */
+/*   Updated: 2021/11/29 12:26:01 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	send_signal(pid_t pid, char c);
 void	get_my_pid(int ac);
 void	handler(int signum);
 void	convert_bits(int *s);
+
 #endif

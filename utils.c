@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fboumell <fboumell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 13:57:12 by marvin            #+#    #+#             */
-/*   Updated: 2021/11/26 16:25:24 by fboumell         ###   ########.fr       */
+/*   Updated: 2021/11/29 11:06:42 by fboumell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,18 @@ char	*ft_putstr(char *str)
 
 void	ft_putnbr(int n)
 {
-	long long	c;
+	unsigned int	c;
 
-	c = n;
-	if (c < 0)
+	if (n < 0)
 	{
-		c = -c;
+		c = n * -1;
 		ft_putchar('-');
 	}
-	if (c >= 0 && c < 9)
-		ft_putchar(c + 48);
+	else
+		c = n;
 	if (c > 9)
-	{
 		ft_putnbr(c / 10);
-		ft_putnbr(c % 10);
-	}
+	ft_putchar(c % 10 + 48);
 }
 
 int	ft_atoi(const char *str)
